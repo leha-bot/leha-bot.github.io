@@ -3,44 +3,50 @@
   <head>
     <title>Color Timestamp Clock!!!!</title>
     <meta charset="utf-8">
-	<script type="text/javascript">
-	function timeStampToRgb(timestamp) {
-		var result = "rgb(" + ((timestamp >> 16) & 0xff) + ", "
-			+ ((timestamp >> 8) & 0xff) + ", "
-			+ (timestamp & 0xff) + ")";
-		return result;
-	}
-	function coolClock() {
-		document.body.style.backgroundColor = timeStampToRgb(Date.now());
-	}
-	</script>
+    <script type="text/javascript">
+    function timeStampToRgb(timestamp) {
+      var result = "rgb(" + ((timestamp >> 16) & 0xff) + ", "
+        + ((timestamp >> 8) & 0xff) + ", "
+        + (timestamp & 0xff) + ")";
+      return result;
+    }
+    function coolClock() {
+      var rgbStyle = timeStampToRgb(Date.now());
+      document.body.style.backgroundColor = rgbStyle;
+      document.getElementById('timestampClock').innerText = rgbStyle;
+    }
+    </script>
     <style type="text/css">
-	  html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-	  }
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-		display: table;
-      }
-	  body .noscript {
-		display: table-cell;
-		text-align: center;
-		vertical-align: middle;
-		width: 100%;
-		height: 100%;
-	  }
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: table;
+      font: 30vh monospace;
+    }
+    body .text {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+    }
     </style>
   </head>
   <body>
-    <noscript class="noscript">For cool Color Timestamp Clock, please, enable JavaScript.</noscript>
-	<script type="text/javascript">
-		setInterval(coolClock, 1000);
-	</script>
+    <noscript class="text">For cool Color Timestamp Clock, please, enable JavaScript.</noscript>
+    <span class="text" id="timestampClock" style="display:none">rgb(RR, GG, BB)</span>
+    <script type="text/javascript">
+      coolClock();
+      setInterval(coolClock, 1000);
+      document.getElementById('timestampClock').style.display = '';
+    </script>
   </body>
 </html>
